@@ -10,7 +10,7 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-    {
+{
     Schema::create('products', function (Blueprint $table) {
         $table->id(); // PK
         // Foreign Key ke categories [cite: 110]
@@ -22,7 +22,7 @@ return new class extends Migration
         $table->string('foto')->nullable();
         $table->timestamps();
     });
-    }
+}
 
     /**
      * Reverse the migrations.
