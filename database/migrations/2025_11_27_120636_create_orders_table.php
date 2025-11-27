@@ -12,13 +12,11 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('orders', function (Blueprint $table) {
-        $table->id(); // PK
-        // Foreign Key ke users [cite: 53]
-        $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-        $table->date('tanggal'); // [cite: 54]
-        $table->decimal('total', 10, 2); // [cite: 55]
-        $table->string('bukti_pembayaran')->nullable();
-        // Enum status pembayaran [cite: 57, 220]
+        $table->id();
+        $table->integer('user_id')->nullable()->index('user_id');
+        $table->date('tanggal')->nullable();
+        $table->decimal('total', 10)->nullable();
+        $table->string('bukti_pembayaran', 255)->nullable();
         $table->enum('status_pembayaran', ['pending', 'sukses', 'gagal'])->default('pending');
         $table->timestamps();
     });

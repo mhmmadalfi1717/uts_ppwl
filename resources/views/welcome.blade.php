@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
+        <title>{{ config('app.name', 'Laravel') }}</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -24,12 +24,23 @@
             @if (Route::has('login'))
                 <nav class="flex items-center justify-end gap-4">
                     @auth
-                        <a
-                            href="{{ url('/dashboard') }}"
-                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
-                        >
-                            Dashboard
-                        </a>
+                        @if (\Illuminate\Support\Facades\Auth::user()->role === 'admin')
+                            <a
+                                href="{{ url('/dashboard') }}"
+                                class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                            >
+                                Dashboard
+                            </a>
+                        @else
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+
+                                <a href="#" class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                                   onclick="event.preventDefault(); this.closest('form').submit();">
+                                    {{ __('Log Out') }}
+                                </a>
+                            </form>
+                        @endif
                     @else
                         <a
                             href="{{ route('login') }}"

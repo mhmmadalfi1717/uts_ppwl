@@ -12,14 +12,13 @@ return new class extends Migration
     public function up(): void
 {
     Schema::create('products', function (Blueprint $table) {
-        $table->id(); // PK
-        // Foreign Key ke categories [cite: 110]
-        $table->foreignId('kategori_id')->constrained('categories')->onDelete('cascade');
-        $table->string('nama');
+        $table->id();
+        $table->integer('kategori_id')->nullable()->index('kategori_id');
+        $table->string('nama', 150)->nullable();
         $table->text('deskripsi')->nullable();
-        $table->decimal('harga', 10, 2); // [cite: 113, 210]
-        $table->integer('stok')->default(0);
-        $table->string('foto')->nullable();
+        $table->decimal('harga', 10)->nullable();
+        $table->integer('stok')->nullable();
+        $table->string('foto', 255)->nullable();
         $table->timestamps();
     });
 }
