@@ -5,7 +5,7 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-
 scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
-    <title>PPWL STORE | @yield('title')</title>
+    <title>FINS PPWL STORE | @yield('title')</title>
     <meta name="description" content=""/>
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}"/>
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -94,7 +94,7 @@ scalable=no, minimum-scale=1.0, maximum-scale=1.0"/>
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h4 class="mb-2">Welcome to Sneat! 👋</h4>
+                    <h4 class="mb-2">Welcome to Home Page UTS PPWL</h4>
 
                     @yield('content')
                 </div>

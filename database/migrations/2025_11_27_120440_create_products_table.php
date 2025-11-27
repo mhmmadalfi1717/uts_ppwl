@@ -10,18 +10,19 @@ return new class extends Migration
      * Run the migrations.
      */
     public function up(): void
-{
-    Schema::create('products', function (Blueprint $table) {
-        $table->id();
-        $table->integer('kategori_id')->nullable()->index('kategori_id');
-        $table->string('nama', 150)->nullable();
-        $table->text('deskripsi')->nullable();
-        $table->decimal('harga', 10)->nullable();
-        $table->integer('stok')->nullable();
-        $table->string('foto', 255)->nullable();
-        $table->timestamps();
-    });
-}
+    {
+        Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('category_id')->constrained('categories');
+            $table->string('name');
+            $table->text('description')->nullable();
+            $table->decimal('price', 10);
+            $table->integer('quantity');
+            $table->string('image');
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
 
     /**
      * Reverse the migrations.
